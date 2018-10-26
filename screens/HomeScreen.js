@@ -36,6 +36,9 @@ export default class HomeScreen extends Component {
     };
   }
 
+  /**
+   * Set backgorund color for  TouchableHighlight
+   */
 setBgColor() {
     return {
       borderRadius: 12,
@@ -58,27 +61,18 @@ componentDidMount(){
       console.error(error);
     });
   }
-
-  handleButtonPress() {
-         //log all form data
-         var nPriceMin = 0;
-         var nPriceMax = this.state.priceRange;
-         var brand = this.state.brand;
-         //fetch request to get filtered data , TODO //call the slug api instead
-         fetch('http://192.168.1.3/gsmarena-API/api/?action=brands&sMakers='+brand+'&nPriceMin='+nPriceMin+'&nPriceMax='+nPriceMax)
-           .then(response => response.json())
-           .then(responseJson => this.setState({
-             filteredBrands:responseJson.data ,
-             showBrand:true
-            }));
-  }
-
+    
+  /**
+   * Navigate to the details screen
+   * @param {*} item 
+   */
   goToDetailsScreen(item){
     //call the reqres API to get random user details
     if(item.id > 12){
       var min = 1; var max = 12 ;
       var userId = Math.floor(Math.random()*(max-min+1)+min );
     }else userId = item.id;
+
     fetch('https://reqres.in/api/users/'+userId)
       .then(response => response.json())
       .then(json => {
@@ -93,19 +87,9 @@ componentDidMount(){
     });
     this.props.navigation.navigate('DetailScreen',{Details:this.state.userDetails});
   }
-
-  renderPickerItems(){
-    // if(this.state.brands.length > 0){
-      this.state.customData.map(function(brand,i){
-        return (
-          <Picker.Item style={{fontFamily: 'SourceSansPro-Regular'}}
-            label="{brand.title}"
-            value="{brand.count}" key={i} />
-        );
-      });
-    // }
-  }
-
+  /**
+   * Render each items in flatlist to TouchableHighlight 
+   */
   _renderItem = ({ item }) => {
       return (
        <TouchableHighlight style={[styles.button, this.setBgColor()]} onPress={()=>this.goToDetailsScreen(item)}>
