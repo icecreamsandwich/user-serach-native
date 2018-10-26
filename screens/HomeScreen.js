@@ -30,8 +30,7 @@ export default class HomeScreen extends Component {
       brand: "",
       showBrand:false,
       isLoading:true,
-      photos: [],
-      albums: [],
+      users: [],
       userDetails: [],
     };
   }
@@ -53,7 +52,7 @@ componentDidMount(){
       .then(json => {
         console.log(json);
         this.setState({
-          albums:json,
+          users:json,
           isLoading:false
         });
      })
@@ -61,10 +60,10 @@ componentDidMount(){
       console.error(error);
     });
   }
-    
+
   /**
    * Navigate to the details screen
-   * @param {*} item 
+   * @param {*} item
    */
   goToDetailsScreen(item){
     //call the reqres API to get random user details
@@ -88,7 +87,7 @@ componentDidMount(){
     this.props.navigation.navigate('DetailScreen',{Details:this.state.userDetails});
   }
   /**
-   * Render each items in flatlist to TouchableHighlight 
+   * Render each items in flatlist to TouchableHighlight
    */
   _renderItem = ({ item }) => {
       return (
@@ -116,11 +115,11 @@ componentDidMount(){
         />
 
         <View style={styles.getStartedContainer}>
-          <Text style={styles.getStartedText}> Albums </Text>
+          {/* <Text style={styles.getStartedText}> Albums </Text> */}
         </View>
 
         <FlatList
-          data={this.state.albums}
+          data={this.state.users}
           keyExtractor={(item, i) => String(i)}
           renderItem={this._renderItem}
           ItemSeparatorComponent={this._ItemSeparator}

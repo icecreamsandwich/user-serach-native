@@ -7,7 +7,7 @@ import Swiper from 'react-native-swiper';
 export default class DetailScreen extends React.Component {
 /**
  * constructor
- * @param {*} props 
+ * @param {*} props
  */
   constructor(props){
     super(props);
@@ -27,8 +27,8 @@ export default class DetailScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    var phoneDetails = [];
-    phoneDetails = navigation.getParam('Details', 'NO-ID');
+    var userDetails = [];
+    userDetails = navigation.getParam('Details', 'NO-ID');
 
     return (
       <Swiper
@@ -36,10 +36,10 @@ export default class DetailScreen extends React.Component {
         showsPagination={false}
         index={0}>
         <View style={this.viewStyle()}>
-          <PhoneD label="Right"  phoneDetails={phoneDetails} />
+          <PhoneD label="Right"  phoneDetails={userDetails} />
         </View>
         <View style={this.viewStyle()}>
-          <PhoneS label="Left" phoneDetails={phoneDetails}/>
+          <PhoneS label="Left" phoneDetails={userDetails}/>
         </View>
       </Swiper>
     );
@@ -48,7 +48,7 @@ export default class DetailScreen extends React.Component {
 
 class PhoneD extends React.Component {
   render() {
-    
+
     return (
       <ScrollView
         style={styles.container}
@@ -65,23 +65,14 @@ class PhoneD extends React.Component {
             <Text style={styles.timestamp}>{this.props.phoneDetails.last_name}</Text>
           </View>
         </View>
-        <Text style={styles.title}>Album Details</Text>
+        <Text style={styles.title}>User Details</Text>
         <Text style={styles.paragraph}>
-        He is the fullstack developer in the company having strong java background and 
-    having experience in java frameworks such as spring and hibernate . Recently he made  his hands 
-    on reactJs for an inhouse project. He has over 4 years of experience in the stack
+          He is the fullstack developer in the company having strong java background and
+          having experience in java frameworks such as spring and hibernate . Recently he made  his hands
+          on reactJs for an inhouse project. He has over 4 years of experience in the stack
         </Text>
         <Image style={styles.image} source={{uri: this.props.phoneDetails.avatar}} />
-        <Text style={styles.paragraph}>
-        He is the fullstack developer in the company having strong java background and 
-    having experience in java frameworks such as spring and hibernate . Recently he made  his hands 
-    on reactJs for an inhouse project. He has over 4 years of experience in the stack
-        </Text>
-        <Text style={styles.paragraph}>
-        He is the fullstack developer in the company having strong java background and 
-    having experience in java frameworks such as spring and hibernate . Recently he made  his hands 
-    on reactJs for an inhouse project. He has over 4 years of experience in the stack
-        </Text>
+        
       </ScrollView>
     )
   }
@@ -107,21 +98,12 @@ class PhoneS extends React.Component {
         </View>
         <Text style={styles.title}>Advanced Details</Text>
         <Text style={styles.paragraph}>
-        He is the fullstack developer in the company having strong java background and 
-    having experience in java frameworks such as spring and hibernate . Recently he made  his hands 
-    on reactJs for an inhouse project. He has over 4 years of experience in the stack
+          He is the fullstack developer in the company having strong java background and
+          having experience in java frameworks such as spring and hibernate . Recently he made  his hands
+          on reactJs for an inhouse project. He has over 4 years of experience in the stack
         </Text>
-        <Image style={styles.image} source={this.props.phoneDetails.avatar} />
-        <Text style={styles.paragraph}>
-        He is the fullstack developer in the company having strong java background and 
-    having experience in java frameworks such as spring and hibernate . Recently he made  his hands 
-    on reactJs for an inhouse project. He has over 4 years of experience in the stack
-        </Text>
-        <Text style={styles.paragraph}>
-        He is the fullstack developer in the company having strong java background and 
-    having experience in java frameworks such as spring and hibernate . Recently he made  his hands 
-    on reactJs for an inhouse project. He has over 4 years of experience in the stack
-        </Text>
+
+
       </ScrollView>
     )
   }
